@@ -146,6 +146,14 @@ $cantidad_agregar_inv_comercial= $_POST['cantidad'];
 
 for ($i=1; $i <= $cantidad_agregar_inv_comercial; $i++) { 
 	if ($producto_agregar_inv_comercial != ''){
+
+		// Buscar la categoría en producto de referencia
+		$buscando_categoría = "SELECT codigo_categoria FROM $BD.producto_referencia WHERE nombre = '$producto_agregar_inv_comercial' ";
+		$ejec_buscando_categoría = $conexion->query($buscando_categoría);
+		foreach ($ejec_buscando_categoría as $categoria) {
+			$categoria_agregar_inv_comercial = $categoria['codigo_categoria'];
+		}
+
 		$sql_agregar_inv_comercial = "INSERT INTO $BD.inv_comercial (codigo,producto,costo,fecha,estado,categoria) VALUES ('$codigo_agregar_inv_comercial','$producto_agregar_inv_comercial','$costo_agregar_inv_comercial','$fecha_agregar_inv_comercial','Disponible','$categoria_agregar_inv_comercial')";
 		
 		$ejec_sql_agregar_inv_comercial = $conexion->query($sql_agregar_inv_comercial);
@@ -188,5 +196,75 @@ for ($i=1; $i <= $cantidad_agregar_inv_comercial; $i++) {
 			
 		}else{}
 	}
+
+	//MOSTRAR INVENTARIO DE INSUMOS: inventario_insumo.php
+	$sql_inventario_insumos = "SELECT *, COUNT(*) as cantidad FROM $BD.insumos GROUP BY `insumo`, `fecha_compra`";
+	$ejec_sql_inventario_insumos = $conexion->query($sql_inventario_insumos);
+
+	//AGREGAR INVENTARIO DE INSUMO: invetario_insumo.php
+	$insumo_agregar_insumo = $_POST['insumo_agregar_insumo'];
+	$unidad_medida_agregar_insumo = $_POST['unidad_medida_agregar_insumo'];
+	$cantidad_agregar_insumo = $_POST['cantidad_agregar_insumo'];
+	$costo_agregar_insumo = $_POST['costo_agregar_insumo'];
+	$fecha_compra_agregar_insumo = $_POST['fecha_compra_agregar_insumo'];
+	$fecha_vencimiento_agregar_insumoo = $_POST['fecha_vencimiento_agregar_insumo'];
+	$proveedor_agregar_insumo = $_POST['proveedor_agregar_insumo'];
+
+	for ($i=1; $i <= $cantidad_agregar_insumo; $i++) {
+		if ($insumo_agregar_insumo != ''){
+			$sql_agregar_insumo = "INSERT INTO $BD.insumos (insumo, unidad_medida, costo, fecha_compra, fecha_vencimiento, proveedor) VALUES ('$insumo_agregar_insumo','$unidad_medida_agregar_insumo','$costo_agregar_insumo','$fecha_compra_agregar_insumo', '$fecha_vencimiento_agregar_insumoo', '$proveedor_agregar_insumo')";
+			
+			$ejec_sql_agregar_insumo = $conexion->query($sql_agregar_insumo);
+			
+		}else{}
+	}
+	
+
+	//AGREGAR SERVICIO
+	$nombre_agregar_servicio = $_POST['nombre_agregar_servicio'];
+	$valor_agregar_servicio = $_POST['valor_agregar_servicio'];
+	$numero_insumos_agregar_servicio = $_POST['numero_insumos_agregar_servicio'];
+	
+	if($nombre_agregar_servicio != '')
+	{
+		$sql_agregar_servicio = "INSERT INTO $BD.servicios (nombre, valor) VALUES ('$nombre_agregar_servicio','$valor_agregar_servicio')";
+		$ejec_sql_agregar_servicio = $conexion->query($sql_agregar_servicio);
+	}
+
+	//MOSTRAR INVENTARIO DE SERVICIOS: servicios.php
+	$sql_inventario_servicios = "SELECT * FROM $BD.servicios GROUP BY id";
+	$ejec_sql_inventario_servicios = $conexion->query($sql_inventario_servicios);
+
+	//MOSTRAR SERVICIOS EN AGREGAR INSUMO AL SERVICIO: agregar_insumos_servicio.php
+	$sql_servicio_agregar_insumo_al_servicio = "SELECT * FROM $BD.servicios ORDER BY id";
+
+	$ejec_sql_servicio_agregar_insumo_al_servicio = $conexion->query($sql_servicio_agregar_insumo_al_servicio);
+
+	//MOTRAR INSUMOS EN AGREGAR INSUMO AL SERVICIO
+	$sql_insumo_agregar_insumo_al_servicio = "SELECT * FROM $BD.insumos ORDER BY id";
+
+	$ejec_sql_insumo_agregar_insumo_al_servicio = $conexion->query($sql_insumo_agregar_insumo_al_servicio);
+
+	//AGREGAR INSUMO AL SERVICIO: agregar_insumos_servicio.php
+	$servicio_agregar_insumo_al_servicio = $_POST['servicio_agregar_insumo_al_servicio'];
+	$insumo_agregar_insumo_al_servicio = $_POST['insumo_agregar_insumo_al_servicio'];
+	$cantidad_agregar_insumo_al_servicio = $_POST['cantidad_agregar_insumo_al_servicio'];
+	
+	$sql_buscar_id_servicio_agregar_insumo_al_servicio = "SELECT id FROM $BD.servicios WHERE nombre='$servicio_agregar_insumo_al_servicio'";
+
+	$sql_buscar_id_insumo_agregar_insumo_al_servicio = "SELECT id FROM $BD.insumos WHERE insumo='$insumo_agregar_insumo_al_servicio'";
+
+	if($servicio_agregar_insumo_al_servicio)
+	{
+		for ($i=0; $i < $cantidad_agregar_insumo_al_servicio; $i++) { 
+			
+			$sql_agregar_insumo_al_servicio = "INSERT INTO $BD.insumos_servicio (id_servicio, id_insumo) VALUES ('$servicio_agregar_insumo_al_servicio','$insumo_agregar_insumo_al_servicio')";
+			
+			
+			$ejec_sql_agregar_insumo_al_servicio = $conexion->query($sql_agregar_insumo_al_servicio);
+		}
+		
+	}
+	
 
 ?>

@@ -47,6 +47,29 @@
 						</li>
 					</ul>
 				</li>
+				<li class="submenu"><a href="#">Portafolio de servicios<span class="icon-down-open"></span></a>	
+					<ul>
+						<li class="submenu"><a href=#>Servicios<span class="icon-down-open"></span></a>
+							<ul class="contsubsec">
+								<li class="subsec"><a href="principal.php?id_prin=10">Portafolio de servicios</a></li>
+							</ul>
+							<ul class="contsubsec">
+								<li class="subsec"><a href="principal.php?id_prin=11">Agregar servicios</a></li>
+							</ul>
+							<ul class="contsubsec">
+								<li class="subsec"><a href="principal.php?id_prin=14">Agregar insumo a un servicio</a></li>
+							</ul>
+						</li>
+						<li class="submenu"><a href=#>Insumos<span class="icon-down-open"></span></a>
+							<ul class="contsubsec">
+								<li class="subsec"><a href="principal.php?id_prin=12">Inventario de insumos</a></li>
+							</ul>
+							<ul class="contsubsec">
+								<li class="subsec"><a href="principal.php?id_prin=13">Agregar insumo</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
 				<li class="submenu"><a href="#">Nomina<span class="icon-down-open"></span></a>
 				</li>
 			</ul>			
@@ -112,11 +135,41 @@
 		<?php
 			 }else if ($id_prin=='9') {
 				?>
-						<div class="col-md-12  titint">Agregar categoría</div>
-		
-						<?php include("inventario/agregar_categoria.php") ?>
-				<?php
-					 }
+				<div class="col-md-12  titint">Agregar categoría</div>
+
+				<?php include("inventario/agregar_categoria.php") ?>
+		<?php
+			}else if ($id_prin=='10') {
+				?>
+				<div class="col-md-12  titint">Servicios</div>
+
+				<?php include("servicios/servicios.php") ?>
+		<?php
+			}else if ($id_prin=='11') {
+				?>
+				<div class="col-md-12  titint">Agregar servicio</div>
+
+				<?php include("servicios/agregar_servicio.php") ?>
+		<?php
+			}else if ($id_prin=='12') {
+				?>
+				<div class="col-md-12  titint">Inventario de insumos</div>
+
+				<?php include("insumos/inventario_insumo.php") ?>
+		<?php
+			}else if ($id_prin=='13') {
+				?>
+				<div class="col-md-12  titint">Agregar insumo</div>
+
+				<?php include("insumos/agregar_insumo.php") ?>
+		<?php
+			}else if ($id_prin=='14') {
+				?>
+				<div class="col-md-12  titint">Agregar insumo al servicio</div>
+
+				<?php include("servicios/agregar_insumos_servicio.php") ?>
+		<?php
+			}
 		?> 
 		</div>	
 	</div>	

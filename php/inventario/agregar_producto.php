@@ -13,6 +13,7 @@
 <div class="container">
 	<div class="row">
 		<?php
+		// Agregar inventario comercial
 		if($agregar_prod=='1') {
 		?>
 		<div class="col-md-12 titint">Inventario comercial</div>
@@ -35,22 +36,6 @@
 					?>
 					</select>
 				</div>
-				<div class="dvint form-group">
-				<span><b>Seleccione el producto:</b></span>
-					<select name="categoria_inv_com" id="codigo">
-					<?php
-
-					foreach ($ejec_sql_categoria_prod_ref as $categoria) {
-						$id_categoria = $categoria['id'];
-						$nombre_categoria = $categoria['categoria'];
-					?>
-						<option value="<?php echo $id_categoria ?>"><?php echo $nombre_categoria ?></option>
-					<?php	
-					}
-
-					?>
-					</select>
-				</div>
 				<div class="dvint form-group"><input class="in form-control" type="number" name="costo" placeholder="Costo de la unidad" min='1' required></div>
 				<div class="form-group"><span>Fecha de compra.</span></div>
 				<div class="dvint form-group"><input class="in form-control" type="date" name="fecha" required></div>
@@ -67,6 +52,7 @@
 		?>
 
 		<?php
+		//Agregar inventario otros
 		if($agregar_prod=='2') {
 		?>
 		<div class="col-md-12 titint">Inventario otros</div>
@@ -95,7 +81,8 @@
 			}
 		?>
 
-<?php
+		<?php
+		// Agregar inventario activos
 		if($agregar_prod=='3') {
 		?>
 		<div class="col-md-12 titint">Inventario de activos</div>

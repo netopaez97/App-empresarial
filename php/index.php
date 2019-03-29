@@ -32,15 +32,35 @@
 				<li class="submenu"><a href="#">Inventario<span class="icon-down-open"></span></a>	
 					<ul>
 						<li><a href="principal.php?id_prin=1">Comercial</a></li>
-						<li><a href="principal.php?id_prin=2">Costo agrupado</a></li>
 						<li><a href="principal.php?id_prin=3">Otros</a></li>
 						<li><a href="principal.php?id_prin=4">Activos</a></li>
 						<li class="submenu"><a href="#">Modificar Inventario<span class="icon-down-open"></span></a>
 							<ul class="contsubsec">
 								<li class="subsec"><a href="principal.php?id_prin=5">Agregar producto</a></li>
 								<li class="subsec"><a href="principal.php?id_prin=8">Agregar producto de referencia</a></li>
+								<li class="subsec"><a href="principal.php?id_prin=9">Agregar categoría</a></li>
 								<li class="subsec"><a href="principal.php?id_prin=6">Modificar producto</a></li>
-								<li class="subsec"><a href="principal.php?id_prin=7">Eliminar producto</a></li>							
+								<li class="subsec"><a href="principal.php?id_prin=7">Eliminar producto</a></li>			
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="submenu"><a href="#">Portafolio de servicios<span class="icon-down-open"></span></a>	
+					<ul>
+						<li class="submenu"><a href=#>Servicios<span class="icon-down-open"></span></a>
+							<ul class="contsubsec">
+								<li class="subsec"><a href="principal.php?id_prin=10">Portafolio de servicios</a></li>
+							</ul>
+							<ul class="contsubsec">
+								<li class="subsec"><a href="principal.php?id_prin=11">Agregar servicios</a></li>
+							</ul>
+						</li>
+						<li class="submenu"><a href=#>Insumos<span class="icon-down-open"></span></a>
+							<ul class="contsubsec">
+								<li class="subsec"><a href="principal.php?id_prin=12">Inventario de insumos</a></li>
+							</ul>
+							<ul class="contsubsec">
+								<li class="subsec"><a href="principal.php?id_prin=13">Agregar insumo</a></li>
 							</ul>
 						</li>
 					</ul>
