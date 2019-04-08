@@ -8,29 +8,30 @@
 		<form action="principal.php?id_prin=1" method="POST">
     <div class="form-group">
         <label class="filtroproduct" for="estado_produc">Categoria: </label>
-        <input class="inpbuscar" type="text" name="categoria">
+        <input class="inpbuscar" type="text" name="categoria_mostrar_comercial">
       </div>
 
       <div class="form-group">
         <label class="filtroproduct" for="estado_produc">Producto: </label>
-        <input class="inpbuscar" type="text" name="producto">
+        <input class="inpbuscar" type="text" name="producto_mostrar_comercial">
       </div>
 
 			<div class="form-group">        
 				<label class="filtroproduct" for="estado_produc">Estado del producto: </label>
-				<select class="filtestado" name="estado">
+				<select class="filtestado" name="estado_mostrar_comercial">
 					<option>Disponible</option>
-					<option>No diponible y Facturado</option>					
+					<option>No diponible</option>
+          <option>Facturado</option>
 				</select>
 			</div>
 
       <div class="checkbox">
-        <label class="filtroproduct">Costo agrupado: Si <input class="cstagrop" name="costoagrup" type="checkbox"></label>
+        <label class="filtroproduct">Costo agrupado: Si <input class="cstagrop" name="costoagrup_mostrar_comercial" type="checkbox"></label>
       </div>
 
       <div class="form-group" style="margin-top: 25px;">
         <label class="filtroproduct" for="estado_produc">Fecha de compra entre: </label>
-        <input class="inpbuscar" type="date" name="fecha1"><input class="inpbuscar" type="date" name="fecha2">
+        <input class="inpbuscar" type="date" name="fecha1_mostrar_comercial"><input class="inpbuscar" type="date" name="fecha2_mostrar_comercial">
       </div>
 			
 			<button type="submit" class="btn btn-primary" style="margin-top: 25px;">Buscar</button>

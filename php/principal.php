@@ -39,10 +39,9 @@
 						<li class="submenu"><a href="#">Modificar Inventario<span class="icon-down-open"></span></a>
 							<ul class="contsubsec">
 								<li class="subsec"><a href="principal.php?id_prin=5">Agregar producto</a></li>
-								<li class="subsec"><a href="principal.php?id_prin=8">Agregar producto de referencia</a></li>
-								<li class="subsec"><a href="principal.php?id_prin=9">Agregar categoría</a></li>
-								<li class="subsec"><a href="principal.php?id_prin=6">Modificar producto</a></li>
-								<li class="subsec"><a href="principal.php?id_prin=7">Eliminar producto</a></li>			
+								<li class="subsec"><a href="principal.php?id_prin=8">Agregar producto de referencia comercial</a></li>
+								<li class="subsec"><a href="principal.php?id_prin=9">Agregar categoría comercial</a></li>
+								<li class="subsec"><a href="principal.php?id_prin=7">Editar/eliminar productos</a></li>			
 							</ul>
 						</li>
 					</ul>
@@ -107,18 +106,11 @@
 			<?php include("inventario/agregar_producto.php") ?>
 
 		<?php
-			 }else if ($id_prin=='6') {
-		?>
-			<div class="col-md-12  titint">Modificar producto de inventario</div>
-			
-			<?php include("inventario/modificar_invt.php") ?>
-
-		<?php
 			 }else if ($id_prin=='7') {
 		?>
 			<div class="col-md-12  titint">Eliminar producto de inventario</div>
 			
-			<?php include("inventario/eliminar_invt.php") ?>
+			<?php include("inventario/editar_eliminar.php") ?>
 
 		<?php
 			 }else if ($id_prin=='8') {

@@ -23,21 +23,21 @@
 	$ejec_sql_invcom = $conexion->query($sql_invcom);
 
 	// FILTRAR INVENTARIO COMERCIAL
-	$cat = $_POST['categoria'];
-    $prod = $_POST['producto'];
-    $estado = $_POST['estado'];
-    $fecha1 = $_POST['fecha1'];
-	$fecha2 = $_POST['fecha2'];
+	$categoria_mostrar_comercial = $_POST['categoria_mostrar_comercial'];
+    $producto_mostrar_comercial = $_POST['producto_mostrar_comercial'];
+    $estado_mostrar_comercial = $_POST['estado_mostrar_comercial'];
+    $fecha1_mostrar_comercial = $_POST['fecha1_mostrar_comercial'];
+	$fecha2_mostrar_comercial = $_POST['fecha2_mostrar_comercial'];
 	$switch = false;
 
 	if($fecha1 =='' && $fecha2 ==''){
 
-        $sql_invcom = "SELECT * FROM bd_integral.inv_comercial WHERE producto LIKE '%$prod%' AND categoria LIKE '%$cat%' AND estado LIKE '%$estado%'";
+		$sql_invcom = "SELECT * FROM bd_integral.inv_comercial WHERE producto LIKE '%$producto_mostrar_comercial%' AND categoria LIKE '%$categoria_mostrar_comercial%' AND estado LIKE '%$estado_mostrar_comercial%'";
 
-		$ejec_sql_invcom = $conexion->query($sql_invcom);
-    }
-    if($fecha1 !='' && $fecha2 != ''){
-		$sql_invcom = "SELECT * FROM bd_integral.inv_comercial WHERE producto LIKE '%$prod%' AND categoria LIKE '%$cat%' AND estado LIKE '%$estado%' AND fecha BETWEEN '$fecha1' AND '$fecha2' ";
+				$ejec_sql_invcom = $conexion->query($sql_invcom);
+	}
+	if($fecha1 !='' && $fecha2 != ''){
+		$sql_invcom = "SELECT * FROM bd_integral.inv_comercial WHERE producto LIKE '%$producto_mostrar_comercial%' AND categoria LIKE '%$categoria_mostrar_comercial%' AND estado LIKE '%$estado_mostrar_comercial%' AND fecha BETWEEN '$fecha1_mostrar_comercial' AND '$fecha2_mostrar_comercial' ";
 		
 		$ejec_sql_invcom = $conexion->query($sql_invcom);
 	}
@@ -137,12 +137,12 @@
 // **** REALIZAR INSERCIÓN PRODUCTOS**** //
 
 // AGREGAR INVENTARIO COMERCIAL: agregar_producto.php //
-$codigo_agregar_inv_comercial= $_POST['codigo'];
-$producto_agregar_inv_comercial= $_POST['producto'];
-$categoria_agregar_inv_comercial= $_POST['categoria_inv_com'];
-$costo_agregar_inv_comercial= $_POST['costo'];
-$fecha_agregar_inv_comercial= $_POST['fecha'];
-$cantidad_agregar_inv_comercial= $_POST['cantidad'];
+$codigo_agregar_inv_comercial= $_POST['codigo_agregar_comercial'];
+$producto_agregar_inv_comercial= $_POST['producto_agregar_comercial'];
+$categoria_agregar_inv_comercial= $_POST['categoria_inv_com_agregar_comercial'];
+$costo_agregar_inv_comercial= $_POST['costo_agregar_comercial'];
+$fecha_agregar_inv_comercial= $_POST['fecha_agregar_comercial'];
+$cantidad_agregar_inv_comercial= $_POST['cantidad_agregar_comercial'];
 
 for ($i=1; $i <= $cantidad_agregar_inv_comercial; $i++) { 
 	if ($producto_agregar_inv_comercial != ''){
@@ -171,15 +171,13 @@ for ($i=1; $i <= $cantidad_agregar_inv_comercial; $i++) {
 	$costo_agregar_inv_otros = $_POST['costo_agregar_otros'];
 	$cantidad_agregar_inv_otros = $_POST['cantidad_agregar_otros'];
 
-	for ($i=1; $i <= $cantidad_agregar_inv_otros; $i++) { 
-		if ($producto_agregar_inv_otros != ''){
+	if ($producto_agregar_inv_otros != ''){
 
-			$sql_agregar_inv_otros = "INSERT INTO $BD.inv_otros (producto, descripcion, comprador, area, fecha_compra, proveedor, costo, unidades) VALUES ('$producto_agregar_inv_otros','$descripcion_agregar_inv_otros','$comprador_agregar_inv_otros','$area_agregar_inv_otros','$fecha_compra_agregar_inv_otros','$proveedor_agregar_inv_otros', '$costo_agregar_inv_otros', '$cantidad_agregar_inv_otros')";
-			
-			
-			$ejec_sql_agregar_inv_otros = $conexion->query($sql_agregar_inv_otros);
-		}else{}
-	}
+		$sql_agregar_inv_otros = "INSERT INTO $BD.inv_otros (producto, descripcion, comprador, area, fecha_compra, proveedor, costo, unidades) VALUES ('$producto_agregar_inv_otros','$descripcion_agregar_inv_otros','$comprador_agregar_inv_otros','$area_agregar_inv_otros','$fecha_compra_agregar_inv_otros','$proveedor_agregar_inv_otros', '$costo_agregar_inv_otros', '$cantidad_agregar_inv_otros')";
+		
+		
+		$ejec_sql_agregar_inv_otros = $conexion->query($sql_agregar_inv_otros);
+	}else{}
 
 	// AGREGAR INVENTARIO DE ACTIVOS: agregar_producto.php //
 	$activo_agregar_activo = $_POST['activo_agregar_activo'];
@@ -265,6 +263,64 @@ for ($i=1; $i <= $cantidad_agregar_inv_comercial; $i++) {
 		}
 		
 	}
-	
+	//MODIFICAR/EDITAR INVENTARIO COMERCIAL
+	$codigo_editar_comercial = $_POST['codigo_editar_comercial'];
+	$producto_editar_comercial = $_POST['producto_editar_comercial'];
+	$costo_editar_comercial = $_POST['costo_editar_comercial'];
+	$fecha_editar_comercial = $_POST['fecha_editar_comercial'];
+	$estado_editar_comercial = $_POST['estado_editar_comercial'];
+	$id_editar_comercial = $_POST['id_editar_comercial'];
+
+	if ($producto_editar_comercial!=''){
+		$sql_editar_inventario_comercial = "UPDATE `inv_comercial` SET `producto`='$producto_editar_comercial',`codigo`='$codigo_editar_comercial',`costo`='$costo_editar_comercial',`fecha`='$fecha_editar_comercial',`estado`='$estado_editar_comercial' WHERE `id`=$id_editar_comercial";
+
+    $ejec_sql_editar_inventario_comercial = $conexion->query($sql_editar_inventario_comercial);
+	}else{}
+
+
+	//MODIFICAR/EDITAR INVENTARIO OTROS
+	$producto_editar_otros = $_POST['producto_editar_otros'];
+	$descripcion_editar_otros = $_POST['descripcion_editar_otros'];
+	$comprador_editar_otros = $_POST['comprador_editar_otros'];
+	$area_editar_otros = $_POST['area_editar_otros'];
+	$fecha_compra_editar_otros = $_POST['fecha_compra_editar_otros'];
+	$proveedor_editar_otros = $_POST['proveedor_editar_otros'];
+	$costo_editar_otros = $_POST['costo_editar_otros'];
+	$unidades_editar_otros = $_POST['unidades_editar_otros'];
+	$id_editar_otros = $_POST['id_editar_otros'];
+
+	if ($producto_editar_otros!=''){
+		$sql_editar_inventario_otros = "UPDATE `inv_otros` SET `producto`='$producto_editar_otros',`descripcion`='$descripcion_editar_otros',`comprador`='$comprador_editar_otros',`area`='$area_editar_otros',`fecha_compra`='$fecha_compra_editar_otros',`proveedor`='$proveedor_editar_otros',`unidades`='$unidades_editar_otros',`costo`='$costo_editar_otros' WHERE `id`=$id_editar_otros";
+
+    $ejec_sql_editar_inventario_otros = $conexion->query($sql_editar_inventario_otros);
+	}else{}
+
+	//MODIFICAR/EDITAR INVENTARIO ACTIVOS
+	$producto_editar_activos = $_POST['producto_editar_activos'];
+	$fechacompra_editar_activos = $_POST['fechacompra_editar_activos'];
+	$valor_editar_activos = $_POST['valor_editar_activos'];
+	$depreciacion_editar_activos = $_POST['depreciacion_editar_activos'];
+	$id_editar_activos = $_POST['id_editar_activos'];
+
+	if ($producto_editar_activos!=''){
+		$sql_editar_inventario_activos = "UPDATE `inv_activos` SET `activo`='$producto_editar_activos',`fecha_compra`='$fechacompra_editar_activos',`valor`='$valor_editar_activos',`depreciacion`='$depreciacion_editar_activos' WHERE `id`=$id_editar_activos";
+
+    $ejec_sql_editar_inventario_activos = $conexion->query($sql_editar_inventario_activos);
+	}else{}
+
+	//ELIMINAR/EDITAR INVENTARIO COMERCIAL
+	$id_eliminar_comercial = $_POST['id_eliminar_comercial'];
+	$sql_eliminar_comercial = "DELETE FROM $BD.inv_comercial WHERE id='$id_eliminar_comercial'";
+	$ejec_sql_eliminar_comercial = $conexion->query($sql_eliminar_comercial);
+
+	//ELIMINAR/EDITAR INVENTARIO OTROS
+	$id_eliminar_otros = $_POST['id_eliminar_otros'];
+	$sql_eliminar_otros = "DELETE FROM $BD.inv_otros WHERE id='$id_eliminar_otros'";
+	$ejec_sql_eliminar_otros = $conexion->query($sql_eliminar_otros);
+
+	//ELIMINAR/EDITAR INVENTARIO OTROS
+	$id_eliminar_activos = $_POST['id_eliminar_activos'];
+	$sql_eliminar_activos = "DELETE FROM $BD.inv_activos WHERE id='$id_eliminar_activos'";
+	$ejec_sql_eliminar_activos = $conexion->query($sql_eliminar_activos);
 
 ?>

@@ -20,28 +20,28 @@
 
 		<div class="col-md-12"> 
 			<form action="principal.php?id_prin=5&agregar_prod=1" method="POST">
-				<div class="dvint form-group"><input class="in form-control"  id="codigo" type="text" name="codigo" placeholder="Código" required></div>
+				<div class="dvint form-group"><input class="in form-control"  id="codigo" type="text" name="codigo_agregar_comercial" placeholder="Código" required></div>
 				<div class="dvint form-group">
-				<span><b>Seleccione el producto:</b></span>
-				<select name="producto">
-					<?php
+					<span><b>Seleccione el producto:</b></span>
+					<select name="producto_agregar_comercial">
+						<?php
 
-					foreach ($ejec_sql_prod_ref as $prod) {
-						$nombre = $prod['nombre'];
-					?>
-						<option value="<?php echo $nombre ?>"><?php echo $nombre ?></option>
-					<?php	
-					}
+						foreach ($ejec_sql_prod_ref as $prod) {
+							$nombre = $prod['nombre'];
+						?>
+							<option value="<?php echo $nombre ?>"><?php echo $nombre ?></option>
+						<?php	
+						}
 
-					?>
+						?>
 					</select>
 				</div>
-				<div class="dvint form-group"><input class="in form-control" type="number" name="costo" placeholder="Costo de la unidad" min='1' required></div>
+				<div class="dvint form-group"><input class="in form-control" type="number" name="costo_agregar_comercial" placeholder="Costo de la unidad" min='1' required></div>
 				<div class="form-group"><span>Fecha de compra.</span></div>
-				<div class="dvint form-group"><input class="in form-control" type="date" name="fecha" required></div>
-				<div class="dvint form-group"><input class="in form-control" type="text" name="estado" value="Disponible" placeholder="Disponible" disabled></div>
+				<div class="dvint form-group"><input class="in form-control" type="date" name="fecha_agregar_comercial" required></div>
+				<div class="dvint form-group"><input class="in form-control" type="text" name="estado_agregar_comercial" value="Disponible" placeholder="Disponible" disabled></div>
 				<div class="form-group"><span class="alt">Digita el n&uacute;mero de unidades que va a ingresar al inventario de este producto.</span></div>
-				<div class="dvint form-group"><input class="in form-control" style="width: 15%;" type="number" name="cantidad" placeholder="numero de unidades" min='1' value="1" required></div>								
+				<div class="dvint form-group"><input class="in form-control" style="width: 15%;" type="number" name="cantidad_agregar_comercial" placeholder="numero de unidades" min='1' value="1" required></div>								
 				<div style="margin-bottom: 45px;" class="dvint"><button type="submit" class="btn btn-primary">Agregar</button></div>
 				<!--onkeydown significa que si escribo una letra, JS la va leyendo-->
 			</form>
